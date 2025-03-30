@@ -3,37 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Hugo Cros</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Portfolio [Votre Nom]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --bg-darker: #1E1E1E;
+            --text-light: #e0e0e0;
+            --text-lighter: #ffffff;
+            --accent-color: #4fc3f7;
+            --accent-secondary: #7c4dff;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 2rem;
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            border-bottom: 2px solid var(--accent-secondary);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--text-lighter);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-secondary);
+            text-decoration: underline;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .intro p {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .skills-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .skills ul {
+            list-style-type: none;
+        }
+
+        .skills li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .skills li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        .project-card {
+            background: var(--bg-darker);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .project-links a {
+            margin-left: 1rem;
+        }
+
+        .experience-item, .education-item {
+            background: var(--bg-darker);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .job-title, .degree {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .company, .school {
+            font-weight: 600;
+            color: var(--text-lighter);
+        }
+
+        .date {
+            color: var(--accent-color);
+        }
+
+        .experience-item ul, .project-card ul {
+            padding-left: 1.5rem;
+        }
+
+        .experience-item li, .project-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid var(--bg-darker);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .skills {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .project-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .project-links {
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Hugo Cros</h1>
-        <p>étudiant en bts sio</p>
-    </header>
+    <div class="container">
+        <header>
+            <h1>[Votre Nom]</h1>
+            <h3>[Votre Titre/Rôle]</h3>
+        </header>
 
-    <section id="presentation">
-        <h2>Salut ! Je m'appelle Hugo</h2>
-        <p>étudiant en BTS sio a Léonard de vinci</p>
-    </section>
+        <section class="intro">
+            <h2>À Propos</h2>
+            <p>
+                [Brève description de vous, votre parcours et vos passions. Exemple : 
+                "Développeur full-stack passionné par les solutions innovantes et les interfaces utilisateur intuitives. 
+                J'aime résoudre des problèmes complexes et créer des expériences numériques mémorables."]
+            </p>
+        </section>
 
-    <section id="expertise">
-        <h2>Domaines d'Expertise</h2>
-        <ul>
-        </ul>
-    </section>
+        <div class="contact-info">
+            <span><i class="fas fa-envelope"></i> [votre@email.com]</span>
+            <span><i class="fas fa-map-marker-alt"></i> [Ville, Pays]</span>
+            <span><i class="fas fa-link"></i> [votresite.com]</span>
+            <span><i class="fab fa-github"></i> [github.com/votreprofil]</span>
+            <span><i class="fab fa-linkedin"></i> [linkedin.com/in/votreprofil]</span>
+        </div>
 
-    <section id="processus">
-        <h2>Processus de Travail</h2>
-        <ol>
-        </ol>
-    </section>
+        <section class="section">
+            <h2>Compétences</h2>
+            <div class="skills">
+                <div class="skills-column">
+                    <h3>Techniques</h3>
+                    <ul>
+                        <li>[Langage 1] (ex: JavaScript, Python)</li>
+                        <li>[Langage 2]</li>
+                        <li>[Framework/Outils] (ex: React, Node.js)</li>
+                        <li>[Autres compétences pertinentes]</li>
+                    </ul>
+                </div>
+                <div class="skills-column">
+                    <h3>Soft Skills</h3>
+                    <ul>
+                        <li>[Communication]</li>
+                        <li>[Gestion de projet]</li>
+                        <li>[Collaboration]</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    <section id="contact">
-        <h2>Écrivez-moi</h2>
-        <p>Email : hugo.cros77550@gmail.com</p>
-        <p>Téléphone : 07 81 47 26 54</p>
-    </section>
+        <section class="section">
+            <h2>Projets</h2>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>[Nom du Projet 1]</h3>
+                    <div class="project-links">
+                        <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
+                        <a href="#"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                </div>
+                <p>
+                    [Description courte du projet, technologies utilisées et votre rôle.]
+                </p>
+                <ul>
+                    <li>[Point clé 1]</li>
+                    <li>[Point clé 2]</li>
+                </ul>
+            </div>
 
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>[Nom du Projet 2]</h3>
+                    <div class="project-links">
+                        <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
+                        <a href="#"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                </div>
+                <p>
+                    [Description courte du projet.]
+                </p>
+                <ul>
+                    <li>[Point clé 1]</li>
+                    <li>[Point clé 2]</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Expérience Professionnelle</h2>
+            <div class="experience-item">
+                <div class="job-title">
+                    <span class="company">[Poste] @ [Entreprise]</span>
+                    <span class="date">[Mois/Année - Mois/Année]</span>
+                </div>
+                <p><i class="fas fa-map-marker-alt"></i> [Ville, Pays]</p>
+                <ul>
+                    <li>[Responsabilité ou réalisation clé]</li>
+                    <li>[Autre point important]</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">
+                    <span class="company">[Poste] @ [Entreprise]</span>
+                    <span class="date">[Mois/Année - Mois/Année]</span>
+                </div>
+                <ul>
+                    <li>[Détails pertinents]</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Formation</h2>
+            <div class="education-item">
+                <div class="degree">
+                    <span class="school">[Diplôme] @ [École/Université]</span>
+                    <span class="date">[Année]</span>
+                </div>
+                <p>[Option/spécialisation si applicable]</p>
+            </div>
+
+            <div class="education-item">
+                <div class="degree">
+                    <span class="school">[Certification] @ [Organisme]</span>
+                    <span class="date">[Année]</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <h3>Contactez-moi</h3>
+            <p>Disponible pour des opportunités passionnantes</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:[votre@email.com]"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p style="margin-top: 2rem;">&copy; [Année] [Votre Nom]. Tous droits réservés.</p>
+        </footer>
+    </div>
 </body>
 </html>
