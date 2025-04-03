@@ -4,150 +4,850 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio CROS Hugo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --bg-dark: #0a192f;
+            --bg-darker: #112240;
+            --text-light: #ccd6f6;
+            --text-lighter: #e6f1ff;
+            --accent-color: #64ffda;
+            --accent-secondary: #8892b0;
+            --box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: linear-gradient(to bottom right, var(--bg-dark), #151e3a);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-top: 3rem;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-lighter);
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 2rem;
+            border-bottom: 0;
+            color: var(--text-lighter);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 40px;
+            background: var(--accent-color);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--accent-secondary);
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--accent-secondary);
+            font-size: 1.05rem;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        a:hover:after {
+            width: 100%;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 1s ease-in 0.3s both;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-in 0.5s both;
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-darker);
+            padding: 0.6rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-info span:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -15px rgba(2, 12, 27, 0.9);
+        }
+
+        .section {
+            margin-bottom: 5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.8s ease-out forwards;
+            animation-delay: calc(var(--order) * 0.2s);
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .skills-column {
+            flex: 1;
+            min-width: 250px;
+            background: var(--bg-darker);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .skills-column:hover {
+            transform: translateY(-5px);
+        }
+
+        .skills h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .skills ul {
+            list-style-type: none;
+        }
+
+        .skills li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .skills li:hover {
+            transform: translateX(5px);
+        }
+
+        .skills li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        .project-card {
+            background: var(--bg-darker);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 40px -20px rgba(2, 12, 27, 0.9);
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-header h3 {
+            color: var(--text-lighter);
+        }
+
+        .project-links a {
+            margin-left: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        .experience-item, .education-item {
+            background: var(--bg-darker);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-item::before, .education-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-color);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+            transform-origin: top;
+        }
+
+        .experience-item:hover::before, .education-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .experience-item:hover, .education-item:hover {
+            transform: translateX(5px);
+        }
+
+        .job-title, .degree {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .company, .school {
+            font-weight: 600;
+            color: var(--text-lighter);
+            font-size: 1.1rem;
+        }
+
+        .date {
+            color: var(--accent-color);
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .experience-item ul, .project-card ul {
+            padding-left: 1.5rem;
+            list-style-type: none;
+        }
+
+        .experience-item li, .project-card li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .experience-item li:before, .project-card li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(136, 146, 176, 0.2);
+            animation: fadeIn 1s ease-in 1.5s both;
+        }
+
+        footer h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-lighter);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            color: var(--accent-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .social-links a:after {
+            display: none;
+        }
+
+        /* Profile photo styling */
+        .profile-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 10px 30px -10px rgba(2, 240, 180, 0.3);
+            position: relative;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            filter: grayscale(20%);
+        }
+
+        .profile-container:hover .profile-photo {
+            transform: scale(1.08);
+            filter: grayscale(0%);
+        }
+
+        .profile-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            box-shadow: inset 0 0 10px rgba(100, 255, 218, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-container:hover::after {
+            opacity: 1;
+        }
+
+        /* Progress bars for skills */
+        .skill-with-progress {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(136, 146, 176, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--accent-color);
+            border-radius: 3px;
+            transition: width 1.5s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .skills {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .project-links {
+                display: flex;
+                gap: 1rem;
+            }
+            
+            .project-links a {
+                margin-left: 0;
+            }
+            
+            .job-title, .degree {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        .scroll-indicator span {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            text-align: left;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+        }
+
+        .hero-name {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 3rem;
+            color: var(--accent-secondary);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .hero-description {
+            max-width: 600px;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -10px rgba(100, 255, 218, 0.4);
+        }
+
+        .cta-button:after {
+            display: none;
+        }
+
+        .section-title-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-number {
+            color: var(--accent-color);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            font-weight: 700;
+        }
+
+        .section-title {
+            margin: 0;
+            margin-right: 1rem;
+        }
+
+        .section-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: rgba(136, 146, 176, 0.3);
+            margin-left: 1rem;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <div class="profile-container">
-                <img src="CROS_Hugo.jpg" alt="Photo de [Votre Nom]" class="profile-photo">
+        <div class="hero-section">
+            <div style="margin-bottom: 5rem;">
+                <p class="hero-title">BONJOUR, JE SUIS</p>
+                <h1 class="hero-name">CROS Hugo.</h1>
+                <h2 class="hero-subtitle">Je construis des solutions numériques.</h2>
+                <p class="hero-description">
+                    Étudiant passionné en BTS SIO, je me spécialise dans le développement d'applications et la gestion de solutions informatiques. Créatif et rigoureux, je transforme les défis techniques en solutions élégantes.
+                </p>
+                <a href="#projets" class="cta-button">Découvrir mes projets</a>
             </div>
-            <h1>CROS Hugo</h1>
-            <h3>Etudiant en BTS sio</h3>
-        </header>
+            <div class="scroll-indicator">
+                <span>SCROLL</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
 
-        <section class="intro">
-            <h2>À Propos</h2>
-            <p>
-                [Brève description de vous, votre parcours et vos passions. Exemple : 
-                "Développeur full-stack passionné par les solutions innovantes et les interfaces utilisateur intuitives. 
-                J'aime résoudre des problèmes complexes et créer des expériences numériques mémorables."]
-            </p>
+        <section class="section" style="--order: 1">
+            <div class="section-title-container">
+                <span class="section-number">01.</span>
+                <h2 class="section-title">À Propos</h2>
+                <div class="section-line"></div>
+            </div>
+            <div style="display: flex; gap: 3rem; flex-wrap: wrap;">
+                <div style="flex: 3; min-width: 300px;">
+                    <p>
+                        Actuellement étudiant en BTS Services Informatiques aux Organisations, je me passionne pour le développement d'applications web et la résolution de problèmes complexes.
+                    </p>
+                    <p>
+                        Mon parcours m'a permis d'acquérir des compétences solides en développement full-stack, avec une appétence particulière pour la création d'interfaces utilisateur intuitives et performantes.
+                    </p>
+                    <p>
+                        Je suis constamment en veille technologique, curieux d'apprendre de nouvelles technologies et méthodologies pour améliorer mes compétences et rester à la pointe de l'innovation.
+                    </p>
+                    <p>
+                        Voici quelques technologies avec lesquelles j'ai travaillé récemment:
+                    </p>
+                    <div style="display: grid; grid-template-columns: repeat(2, minmax(140px, 200px)); gap: 0 10px; margin-top: 20px;">
+                        <div style="position: relative; padding-left: 20px; margin-bottom: 10px;">
+                            <i class="fas fa-caret-right" style="color: var(--accent-color); position: absolute; left: 0;"></i>
+                            JavaScript (ES6+)
+                        </div>
+                        <div style="position: relative; padding-left: 20px; margin-bottom: 10px;">
+                            <i class="fas fa-caret-right" style="color: var(--accent-color); position: absolute; left: 0;"></i>
+                            HTML & CSS
+                        </div>
+                        <div style="position: relative; padding-left: 20px; margin-bottom: 10px;">
+                            <i class="fas fa-caret-right" style="color: var(--accent-color); position: absolute; left: 0;"></i>
+                            PHP & MySQL
+                        </div>
+                        <div style="position: relative; padding-left: 20px; margin-bottom: 10px;">
+                            <i class="fas fa-caret-right" style="color: var(--accent-color); position: absolute; left: 0;"></i>
+                            React.js
+                        </div>
+                    </div>
+                </div>
+                <div style="flex: 2; min-width: 250px;">
+                    <div style="position: relative; width: 300px; max-width: 100%; margin: 0 auto;">
+                        <div style="position: relative; z-index: 1; border-radius: 5px; overflow: hidden;">
+                            <img src="CROS_Hugo.jpg" alt="Photo de CROS Hugo" style="width: 100%; display: block; transition: all 0.3s ease;">
+                        </div>
+                        <div style="position: absolute; top: 15px; left: 15px; width: 100%; height: 100%; border: 2px solid var(--accent-color); border-radius: 5px; z-index: 0; transition: all 0.3s ease;"></div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <div class="contact-info">
             <span><i class="fas fa-envelope"></i> hugo.cros77550@gmail.com</span>
             <span><i class="fas fa-map-marker-alt"></i> Limoges Fourches, France</span>
-            <span><i class="fab fa-github"></i> https://github.com/CrosHugo?tab=repositories</span>
-            <span><i class="fab fa-linkedin"></i> [linkedin.com/in/votreprofil]</span>
+            <span><i class="fab fa-github"></i> CrosHugo</span>
+            <span><i class="fab fa-linkedin"></i> linkedin.com/cros-hugo</span>
         </div>
 
-        <section class="section">
-            <h2>Compétences</h2>
+        <section id="competences" class="section" style="--order: 2">
+            <div class="section-title-container">
+                <span class="section-number">02.</span>
+                <h2 class="section-title">Compétences</h2>
+                <div class="section-line"></div>
+            </div>
             <div class="skills">
                 <div class="skills-column">
-                    <h3>Techniques</h3>
-                    <ul>
-                        <li>[Langage 1] (ex: JavaScript, Python)</li>
-                        <li>[Langage 2]</li>
-                        <li>[Framework/Outils] (ex: React, Node.js)</li>
-                        <li>[Autres compétences pertinentes]</li>
-                    </ul>
+                    <h3>Développement</h3>
+                    <div class="skill-with-progress">
+                        <div class="skill-name">
+                            <span>JavaScript</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-with-progress">
+                        <div class="skill-name">
+                            <span>HTML/CSS</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-with-progress">
+                        <div class="skill-name">
+                            <span>PHP</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-with-progress">
+                        <div class="skill-name">
+                            <span>SQL</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 80%;"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="skills-column">
                     <h3>Soft Skills</h3>
-                    <ul>
-                        <li>[Communication]</li>
-                        <li>[Gestion de projet]</li>
-                        <li>[Collaboration]</li>
-                    </ul>
+                    <div class="skill-with-progress">
+                        <div class="skill-name">
+                            <span>Travail d'équipe</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-with-progress">
+                        <div class="skill-name">
+                            <span>Communication</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-with-progress">
+                        <div class="skill-name">
+                            <span>Résolution de problèmes</span>
+                            <span>88%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 88%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-with-progress">
+                        <div class="skill-name">
+                            <span>Autonomie</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 95%;"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="section">
-            <h2>Projets</h2>
+        <section id="projets" class="section" style="--order: 3">
+            <div class="section-title-container">
+                <span class="section-number">03.</span>
+                <h2 class="section-title">Projets</h2>
+                <div class="section-line"></div>
+            </div>
             <div class="project-card">
                 <div class="project-header">
-                    <h3>[Nom du Projet 1]</h3>
+                    <h3>Application de Gestion Client</h3>
                     <div class="project-links">
-                        <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
-                        <a href="#"><i class="fab fa-github"></i> Code</a>
+                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Démo</a>
+                        <a href="https://github.com/CrosHugo" target="_blank"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
                 <p>
-                    [Description courte du projet, technologies utilisées et votre rôle.]
+                    Application web développée en PHP et MySQL permettant de gérer efficacement une base de données clients avec visualisation des statistiques et exports personnalisés.
                 </p>
                 <ul>
-                    <li>[Point clé 1]</li>
-                    <li>[Point clé 2]</li>
+                    <li>Interface utilisateur intuitive avec Bootstrap</li>
+                    <li>Système d'authentification multi-niveaux</li>
+                    <li>Génération de rapports PDF et export Excel</li>
+                    <li>Mise en place de l'architecture MVC</li>
                 </ul>
             </div>
 
             <div class="project-card">
                 <div class="project-header">
-                    <h3>[Nom du Projet 2]</h3>
+                    <h3>Portfolio Responsive</h3>
                     <div class="project-links">
-                        <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
-                        <a href="#"><i class="fab fa-github"></i> Code</a>
+                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Visiter</a>
+                        <a href="https://github.com/CrosHugo" target="_blank"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
                 <p>
-                    [Description courte du projet.]
+                    Site web portfolio présentant mes compétences et réalisations, développé avec HTML5, CSS3 et JavaScript.
                 </p>
                 <ul>
-                    <li>[Point clé 1]</li>
-                    <li>[Point clé 2]</li>
+                    <li>Design responsive adapté à tous les appareils</li>
+                    <li>Animations fluides et interactions utilisateur</li>
+                    <li>Optimisation des performances (score PageSpeed > 90)</li>
                 </ul>
             </div>
         </section>
 
-        <section class="section">
-            <h2>Expérience Professionnelle</h2>
+        <section class="section" style="--order: 4">
+            <div class="section-title-container">
+                <span class="section-number">04.</span>
+                <h2 class="section-title">Expérience</h2>
+                <div class="section-line"></div>
+            </div>
             <div class="experience-item">
                 <div class="job-title">
-                    <span class="company">[Poste] @ [Entreprise]</span>
-                    <span class="date">[Mois/Année - Mois/Année]</span>
+                    <span class="company">Développeur Web Stagiaire @ Entreprise XYZ</span>
+                    <span class="date">Janvier 2023 - Mars 2023</span>
                 </div>
-                <p><i class="fas fa-map-marker-alt"></i> [Ville, Pays]</p>
+                <p><i class="fas fa-map-marker-alt"></i> Paris, France</p>
                 <ul>
-                    <li>[Responsabilité ou réalisation clé]</li>
-                    <li>[Autre point important]</li>
+                    <li>Développement d'une interface d'administration pour la gestion des contenus</li>
+                    <li>Optimisation des requêtes SQL pour améliorer les performances du site</li>
+                    <li>Collaboration avec l'équipe design pour l'intégration de nouvelles maquettes</li>
+                    <li>Mise en place de tests automatisés</li>
                 </ul>
             </div>
 
             <div class="experience-item">
                 <div class="job-title">
-                    <span class="company">[Poste] @ [Entreprise]</span>
-                    <span class="date">[Mois/Année - Mois/Année]</span>
+                    <span class="company">Assistant IT @ Société ABC</span>
+                    <span class="date">Juin 2022 - Août 2022</span>
                 </div>
+                <p><i class="fas fa-map-marker-alt"></i> Lyon, France</p>
                 <ul>
-                    <li>[Détails pertinents]</li>
+                    <li>Support technique aux utilisateurs (50+ employés)</li>
+                    <li>Maintenance du parc informatique et résolution d'incidents</li>
+                    <li>Participation à la migration vers un nouveau système ERP</li>
                 </ul>
             </div>
         </section>
 
-        <section class="section">
-            <h2>Formation</h2>
+        <section class="section" style="--order: 5">
+            <div class="section-title-container">
+                <span class="section-number">05.</span>
+                <h2 class="section-title">Formation</h2>
+                <div class="section-line"></div>
+            </div>
             <div class="education-item">
                 <div class="degree">
-                    <span class="school">[Diplôme] @ [École/Université]</span>
-                    <span class="date">[Année]</span>
+                    <span class="school">BTS SIO SLAM @ Lycée Saint-Nicolas</span>
+                    <span class="date">2021 - 2023</span>
                 </div>
-                <p>[Option/spécialisation si applicable]</p>
+                <p>Solutions Logicielles et Applications Métier</p>
+                <ul>
+                    <li>Développement d'applications et conception de solutions informatiques</li>
+                    <li>Administration de bases de données et systèmes d'information</li>
+                    <li>Projet de fin d'études: Création d'une application de gestion pour une PME</li>
+                </ul>
             </div>
 
             <div class="education-item">
                 <div class="degree">
-                    <span class="school">[Certification] @ [Organisme]</span>
-                    <span class="date">[Année]</span>
+                    <span class="school">Baccalauréat STI2D @ Lycée Louis Armand</span>
+                    <span class="date">2021</span>
                 </div>
+                <p>Option Systèmes d'Information et Numérique</p>
+                <ul>
+                    <li>Mention Bien</li>
+                    <li>Projet technologique: Système de monitoring environnemental connecté</li>
+                </ul>
             </div>
         </section>
 
         <footer>
-            <h3>Contactez-moi</h3>
-            <p>Disponible pour des opportunités passionnantes</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="mailto:[votre@email.com]"><i class="fas fa-envelope"></i></a>
-            </div>
-            <p style="margin-top: 2rem;">&copy; [Année] [Votre Nom]. Tous droits réservés.</p>
-        </footer>
-    </div>
-</body>
-</html>
+            <h3>Intéressé par
